@@ -1,2 +1,3 @@
 # 590-WebsiteFingerprinting
-group 12 590 lab 1
+590 Lab 1 - Website Fingerprinting
+Group 12 - Andre Rastrelly, Nhu Le, Raymond Zou
