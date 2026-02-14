@@ -22,22 +22,21 @@ function measureNLines() {
     // TODO: Exercise 1-1
     const LINE_SIZE = 16; // 128/sizeof(double) Note that js treats all numbers as double
     let result = [];
-    let numLines = 100000;
-
+    let numLines = 100;
     // Fill with -1 to ensure allocation
     const M = new Array(runs * LINE_SIZE * numLines).fill(-1);
 
     for (let i = 0; i < runs; i++) {
         // runs
         const start = performance.now();
-        for (let j = 1; j <= numLines; j++) {
+        for (let j = 0; j < numLines; j++) {
             // lines
             let val = M[i * LINE_SIZE * numLines + j * LINE_SIZE];
         }
         const end = performance.now();
         result.push(end - start);
     }
-
+    result.sort();
     return result;
 }
 

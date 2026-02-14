@@ -12,9 +12,23 @@ def eval():
     for i in range(10):
         ### TODO: Exercise 2-5
         ### 1. Load data from traces file
+        traceFilePath = "hwsec-course/lab-websitefingerprinting/traces.out"
+        with open(traceFilePath, 'r') as file:
+            content = file.read() # dictionary with keys "traces" and "labels"
+
+        data = json.loads(content)
+        X = data["traces"]
+        y = data["labels"]
+
         ### 2. Split data into X_train, X_test, y_train, y_test with train_test_split
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+
         ### 3. Train classifier with X_train and y_train
+        model = RandomForestClassifier(n_estimators=300, random_state=42, n_jobs=-1)
+        model.fit(X_train, y_train)
+        
         ### 4. Use classifier to make predictions on X_test. Save the result to a variable called y_pred
+        y_pred = model.predict(X_test)
 
         # Do not modify the next two lines
         y_test_full.extend(y_test)
@@ -22,6 +36,8 @@ def eval():
 
     ### TODO: Exercise 2-5 (continued)
     ### 5. Print classification report using y_test_full and y_pred_full
+    print("\nClassification Report: \n", classification_report(y_test, y_pred))
+     # add functionality
 
 if __name__ == "__main__":
     eval()
